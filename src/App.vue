@@ -1,19 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to My News App"/>
+    <div v-for="article in articles">
+      <h4> {{ article.title }} </h4>
+
+    </div>
+
+
   </div>
 </template>
 
 <!-- ________________________________________________________ -->
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+  
+// import HelloWorld from './components/HelloWorld.vue'
 
 export default {
-  name: 'app',
+  data: function() {
+    return {
+      articles: [
+        {
+         title: "Article 1: Morbi non pretium purus",
+         description: "Pellentesque id ex in ligula vestibulum dictum at et lorem. Nam quis ultricies purus, ac interdum sem. Nam porta quis leo id ullamcorper." 
+        },
+        {
+         title: "Article 2: Vestibulum tempus",
+         description: "Cras dictum varius diam, at finibus leo varius ac. Aenean et libero" 
+        },
+        {
+         title: "Article 3: Curabitur at odio ligula",
+         description: "Etiam sagittis sed diam ac egestas. Ut viverra" 
+        },
+      ]
+    }
+  },
+  methods: {
+
+  },
   components: {
-    HelloWorld
+    // appHello: HelloWorld
   }
 }
 </script>
