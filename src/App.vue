@@ -1,18 +1,22 @@
 <template>
-  <div id="app">
-    <div v-for="article in articles">
-      <h4> {{ article.title }} </h4>
-
+  <div id="app" class='container-fluid'>
+    <div class='row'>
+      <!--note: 'article' represents each individual item in 'articles' object. -->
+      <div v-for="article in articles" class='col-4'>
+          <h4> {{ article.title }} </h4>
+          <p> {{ article.description }}</p>
+    
+        </div>
+    
+      </div>
     </div>
 
-
-  </div>
 </template>
 
 <!-- ________________________________________________________ -->
 
 <script>
-  
+
 // import HelloWorld from './components/HelloWorld.vue'
 
 export default {
