@@ -2,8 +2,10 @@
   <div id="app" class='container-fluid'>
     <div class='row'>
       <!--note: 'article' represents each individual item in 'articles' object. -->
-      <div v-for="article in articles" class='col-4'>
+      <div v-for="article in articles" class="col-4">
+          <img v-bind:src="article.urlToImage" v-bind:alt='article.description' class="img-fluid">
           <h4> {{ article.title }} </h4>
+          <h6>{{ article.author }} | {{article.source.name }}</h6>
           <p> {{ article.description }}</p>
     
         </div>
@@ -22,32 +24,24 @@
 export default {
   data: function() {
     return {
-      articles: [
-        {
-         title: "Article 1",
-         description: "Pellentesque id ex in ligula vestibulum dictum at et lorem. Nam quis ultricies purus, ac interdum sem. Nam porta quis leo id ullamcorper." 
-        },
-        {
-         title: "Article 2",
-         description: "Cras dictum varius diam, at finibus leo varius ac. Aenean et libero" 
-        },
-        {
-         title: "Article 3",
-         description: "Etiam sagittis sed diam ac egestas. Ut viverra" 
-        },
-      ]
+      articles: []
     }
   },
   mounted: function(){
+    var that = this;
     var url = 'https://newsapi.org/v2/top-headlines?' +
           'country=us&' +
           'apiKey=57e7cd5efcd041d8977efdfa1d1e4059';
-var req = new Request(url);
-fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-    })
-  },
+    var req = new Request(url);
+    fetch(req)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data){
+          console.log(data);
+          that.articles = data.articles;
+        })
+      },
   components: {
     // appHello: HelloWorld
   }
