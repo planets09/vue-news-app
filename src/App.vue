@@ -1,17 +1,10 @@
 <template>
   <div id="app" class='container-fluid'>
     <div class='row'>
-      <!--note: 'article' represents each individual item in 'articles' object. -->
-      <div v-for="article in articles" class="col-4">
-          <img v-bind:src="article.urlToImage" v-bind:alt='article.description' class="img-fluid">
-          <h4> {{ article.title }} </h4>
-          <h6>{{ article.author }} | {{article.source.name }}</h6>
-          <p> {{ article.description }}</p>
-    
-        </div>
-    
-      </div>
+      <app-article v-for="article in articles"></app-article>
+     
     </div>
+  </div>
 
 </template>
 
@@ -19,13 +12,16 @@
 
 <script>
 
-// import HelloWorld from './components/HelloWorld.vue'
+import Article from "./components/Article.vue";
 
 export default {
   data: function() {
     return {
       articles: []
     }
+  },
+  components: {
+    'app-article': Article
   },
   mounted: function(){
     var that = this;
@@ -41,10 +37,7 @@ export default {
           console.log(data);
           that.articles = data.articles;
         })
-      },
-  components: {
-    // appHello: HelloWorld
-  }
+      }
 }
 </script>
 
