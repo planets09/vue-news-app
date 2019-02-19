@@ -1,7 +1,16 @@
 <template>
   <div id="app" class='container-fluid'>
+
     <div class='row'>
-      <app-article v-for="article in articles"></app-article>
+      <input type='text' placeholder='SEARCH'
+      v-model='searchQuery'>
+      <p>{{ seachQuery }}</p>
+      <button>SUBMIT</button>
+    </div>
+
+    <div class='row'>
+      <app-article v-for="newsArticle in articles"
+      v-bind:data='newsArticle'></app-article>
      
     </div>
   </div>
@@ -17,16 +26,26 @@ import Article from "./components/Article.vue";
 export default {
   data: function() {
     return {
-      articles: []
+      articles: [],
+      searchQuery: "world news"
     }
+  },
+  method: {
+    changeNews: {
+      getNews: function(){
+        
+      }
+    }
+
   },
   components: {
     'app-article': Article
   },
   mounted: function(){
     var that = this;
-    var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' +
+    var url = 'https://newsapi.org/v2/everything?' +
+          // 'country=us&' +
+          'q=' + this.searchQuery + '&' + 
           'apiKey=57e7cd5efcd041d8977efdfa1d1e4059';
     var req = new Request(url);
     fetch(req)

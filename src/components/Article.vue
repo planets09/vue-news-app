@@ -1,9 +1,9 @@
 <template>  
-    <div class="col-4"> Lorem Ipsum
-        <!-- <img v-bind:src="article.urlToImage" v-bind:alt='article.description' class="img-fluid">
-        <h4> {{ article.title }} </h4>
-        <h6>{{ article.author }} | {{article.source.name }}</h6>
-        <p> {{ article.description }}</p> -->
+    <div class="col-4"> 
+        <img v-bind:src="data.urlToImage" v-bind:alt='data.description' class="img-fluid">
+        <h4> {{ data.title }} </h4>
+        <h6>{{ data.author }} | {{ data.source.name }}</h6>
+        <p> {{ data.description }}</p>
     </div>
 
 
@@ -11,9 +11,8 @@
 
 <script>    
     export default{
-
+        props: ['data']
     }
-
 </script>
 
 
