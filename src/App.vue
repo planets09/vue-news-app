@@ -4,8 +4,8 @@
     <div class='row'>
       <input type='text' placeholder='SEARCH'
       v-model='searchQuery'>
-      <p>{{ seachQuery }}</p>
-      <button>SUBMIT</button>
+      <!-- <p>{{ seachQuery }}</p> -->
+      <button v-on:click='getNews'>SUBMIT</button>
     </div>
 
     <div class='row'>
@@ -30,18 +30,8 @@ export default {
       searchQuery: "world news"
     }
   },
-  method: {
-    changeNews: {
-      getNews: function(){
-        
-      }
-    }
-
-  },
-  components: {
-    'app-article': Article
-  },
-  mounted: function(){
+  methods: {
+   getNews: function(){
     var that = this;
     var url = 'https://newsapi.org/v2/everything?' +
           // 'country=us&' +
@@ -53,9 +43,17 @@ export default {
           return response.json();
         })
         .then(function(data){
-          console.log(data);
+          // console.log(data);
           that.articles = data.articles;
         })
+        this.searchQuery = '';
+   }
+  },
+  components: {
+    'app-article': Article
+  },
+  mounted: function(){
+    this.getNews()
       }
 }
 </script>
