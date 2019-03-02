@@ -2,10 +2,7 @@
   <div id="app" class='container-fluid'>
 
     <div class='row'>
-      <input type='text' placeholder='SEARCH'
-      v-model='searchQuery'>
-      <!-- <p>{{ seachQuery }}</p> -->
-      <button v-on:click='getNews'>SUBMIT</button>
+      <app-search v-on:newsChanged="getNews"></app-search>
     </div>
 
     <div class='row'>
@@ -22,6 +19,7 @@
 <script>
 
 import Article from "./components/Article.vue";
+import Search from "./components/Search.vue";
 
 export default {
   data: function() {
@@ -31,11 +29,11 @@ export default {
     }
   },
   methods: {
-   getNews: function(){
+   getNews: function(query){
     var that = this;
     var url = 'https://newsapi.org/v2/everything?' +
           // 'country=us&' +
-          'q=' + this.searchQuery + '&' + 
+          'q=' + query + '&' + 
           'apiKey=57e7cd5efcd041d8977efdfa1d1e4059';
     var req = new Request(url);
     fetch(req)
@@ -50,10 +48,11 @@ export default {
    }
   },
   components: {
-    'app-article': Article
+    'app-article': Article,
+    'app-search': Search
   },
   mounted: function(){
-    this.getNews()
+    this.getNews(this.searchQuery)
       }
 }
 </script>
