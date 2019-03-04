@@ -36,7 +36,7 @@ export default {
     return {
       articles: [],
       searchQuery: "world news",
-      sortCriteria: " "
+      sortCriteria: ""
     };
   },
   methods: {

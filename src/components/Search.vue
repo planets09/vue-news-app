@@ -1,7 +1,9 @@
 <template>
     <div>
-        <input type='text' placeholder='SEARCH' v-model='searchQuery'>
-        <button v-on:click='changeNews'>SUBMIT</button>
+        <input type='text' placeholder='SEARCH' 
+        v-model='searchQuery'
+        @change.lazy='changeNews'>
+        <!-- <button v-on:click='changeNews'>SUBMIT</button> -->
 
     </div>
 </template>
